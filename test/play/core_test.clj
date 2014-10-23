@@ -9,7 +9,7 @@
 (defn sortify [instructions input] input)
 
 
-(deftest test-sort-according-to-instructions
+#_(deftest test-sort-according-to-instructions
   (testing "the sample in the blog"
     (let [instructions [[:meal :asc {"breakfast" 1 "lunch" 2 "dinner" 3}]
                         [:food :desc]]
@@ -19,6 +19,17 @@
       (is (= result expected))))
   )
 
-(Deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+
+(defn method-under-test []
+  {:category "food"
+   :children [ { :category "fruit"
+                :updatedAt "yesterday"
+                :createdAt "yesterday"}
+               ]
+   :createdAt "last week"
+   :updatedAt "last week"})
+
+(deftest streamline-returned-tree
+  (testing "boring fields are not returned"
+    (let [result (method-under-test)]
+      (is (seq (:children result))))))
