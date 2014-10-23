@@ -31,5 +31,7 @@
 
 (deftest streamline-returned-tree
   (testing "boring fields are not returned"
-    (let [result (method-under-test)]
-      (is (seq (:children result))))))
+    (let [result (method-under-test)
+          result-string (pr-str result)]
+      (is (seq (:children result)))
+      (is (not (.contains result-string ":createdAt"))))))
