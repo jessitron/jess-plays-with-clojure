@@ -29,9 +29,12 @@
    :createdAt "last week"
    :updatedAt "last week"})
 
+(defn not-contains [big-str small-str]
+  (not (.contains big-str small-str)))
+
 (deftest streamline-returned-tree
   (testing "boring fields are not returned"
     (let [result (method-under-test)
           result-string (pr-str result)]
       (is (seq (:children result)))
-      (is (not (.contains result-string ":createdAt"))))))
+      (is (not-contains result-string ":createdAt")))))
